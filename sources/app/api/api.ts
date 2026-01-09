@@ -39,6 +39,9 @@ export async function startApi() {
         allowedHeaders: '*',
         methods: ['GET', 'POST', 'DELETE']
     });
+    app.register(import('@fastify/rate-limit'), {
+        global: false // Only apply to routes with explicit config
+    });
     app.get('/', function (request, reply) {
         reply.send('Welcome to Happy Server!');
     });
